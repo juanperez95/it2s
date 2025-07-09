@@ -14,7 +14,7 @@
                         <option value="C-1">C-1</option>
                     </select>
                     <!-- Select que contiene los acudidentes registrados en el momento-->
-                    <select class="inputs" v-model="datos_nino.acudiente">
+                    <select class="inputs" v-model="datos_nino.acudiente_id">
                         <option value="0">Seleccione el acudiente</option>
                     </select>
                     <!-- Edad del niño -->
@@ -40,13 +40,14 @@ import generos from '../generos.json';
 import Boton from './Boton.vue';
 import { reactive } from 'vue';
 
+
 // Datos del formulario del niño
 const datos_nino = reactive({
     nombre: null,
     salon: null,
-    acudiente: null,
+    acudiente_id: null,
     edad: null,
-    genero: "Femenino"
+    genero: "Femenino",
 });
 
 

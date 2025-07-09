@@ -15,40 +15,30 @@
                 </thead>
                 <!-- Contenido de la tabla-->
                 <tbody>
-                    <tr class="">
+                    <tr class="" v-for="(nino, index) in store_tabla.tabla" :key="nino.id">
                         <td class="p-1 text-center ml-2 border-b-1 border-blue-400">
-                            <input type="text" class="w-full text-center" value="Juanito" :disabled="activar_edicion"/>
+                            <input type="text" class="w-full text-center" :value="nino.nombre" disabled id="nombre"/>
                         </td>
                         <td class="p-1 text-center ml-2 border-b-1 border-blue-400">
-                            <select name="salon" id="salon" :disabled="activar_edicion">
-                                <option value="A-1">A-1</option>
-                                <option value="A-2">A-2</option>
-                                <option value="B-1">B-1</option>
-                                <option value="B-2">B-2</option>
-                                <option value="C-1">C-1</option>
-                            </select>
+                            <input type="text" class="w-full text-center" :value="nino.salon" disabled>
                         </td>
                         <td class="p-1 text-center ml-2 border-b-1 border-blue-400">
-                            <input type="text" class="w-full text-center" value="Pedro" :disabled="activar_edicion">
+                            <input type="text" class="w-full text-center" :value="nino.acudiente.nombre" disabled>
                         </td>
                         <td class="p-1 text-center ml-2 border-b-1 border-blue-400">
-                            <input type="number" class="w-full text-center" value="18" :disabled="activar_edicion">
+                            <input type="number" class="w-full text-center" :value="nino.edad" disabled>
                         </td>
                         <td class="p-1 text-center ml-2 border-b-1 border-blue-400">
-                            <select class="w-full text-center" :disabled="activar_edicion">
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                            </select>
+                            <input type="text" class="w-full text-center" :value="nino.genero" disabled>
                         </td>
                         <td class="p-1 text-center ml-2 border-b-1 border-blue-400 flex gap-2">
                             <!--- Cambiar iconos y textos en base a como edita los datos de la tabla en los botones de accion-->
-                            <Boton :texto_btn="!activar_edicion ? 'Guardar' : 'Editar'" tipo_btn="button" :icono="['fas','edit']" @funcion_btn="activar_edicion ? activar_edicion = false : guardar_datos()"/>
-                            <Boton :texto_btn="!activar_edicion ? 'Cancelar' : 'Eliminar'" tipo_btn="button" :icono="['fas','trash']" @funcion_btn="!activar_edicion ? activar_edicion = true : eliminar_registro()"/>
+                            <Boton :texto_btn="'Editar'" tipo_btn="button" :icono="['fas','edit']" />
+                            <Boton :texto_btn="'Eliminar'" tipo_btn="button" :icono="['fas','trash']" />
                         </td>
                     </tr>
                 </tbody>
             </table>
-            {{ store_tabla.tabla }}
         </section>
     </div>
 </template>
@@ -56,11 +46,20 @@
 <script setup>
 import Boton from './Boton.vue';
 import { useStoreTabla } from '../store/storeTabla.js'; // Importar store de la tabla
-import { ref, reactive } from 'vue'; 
+import { ref, reactive, onMounted } from 'vue'; 
+import { useStoreApi } from '../store/storeApi.js';
+
+const api_context = useStoreApi(); // Importar store de la api
 
 const store_tabla = useStoreTabla(); // Manejar el store de la tabla
 
 const activar_edicion = ref(true); // Activar los inputs de la tabla cuando editen la informacion
+
+// Cada vez que renderiza el componente realiza una consulta
+onMounted(async() => {
+    store_tabla.tabla = await api_context.requestApi('/api/ninos','GET');
+    console.log(store_tabla.tabla);
+});
 
 // Datos para enviar a la base de datos
 const datos_tabla = reactive({
@@ -72,8 +71,8 @@ const datos_tabla = reactive({
 });
 
 // Funcion para guardar la edicion
-const guardar_datos = () => {
-    console.log("Guardando datos");
+const guardar_datos = (nino) => {
+    console.log(nino);
 }
 
 // Funcion para eliminar datos
