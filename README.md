@@ -48,6 +48,7 @@ El proyecto está construido con el siguiente stack tecnológico moderno:
 ```bash
 git clone https://github.com/juanperez95/it2s.git
 cd it2s
+```
 
 2. Instala las dependencias composer:
 

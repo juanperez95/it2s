@@ -9,3 +9,43 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Efectos de la imagen */
+.imagen {
+    transition: transform 0.3s ease-in-out;
+
+}
+.imagen:hover {
+    transform: scale(1.2);
+}
+
+/* Efecto de entrada para cada modal*/
+.efecto_modal{
+    transition: all 0.5s ease-in-out;
+    transform: translateY(100%);
+}
+
+.efecto_modal-active{
+    transition: all 0.5s ease-in-out;
+    transform: translateY(0%);
+    animation: modal 0.5s ease-in-out;
+}
+/*Animacion de entrada en el apartado de cada formulario*/
+@keyframes modal {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+
+/*Estilo de los input para los formularios*/
+.inputs{
+    @apply w-full p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500;
+}
+
+.estilo_modal{
+    @apply bg-black opacity-90 h-full w-100 fixed rounded-md text-white p-3;
+}
