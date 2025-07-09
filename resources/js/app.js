@@ -10,8 +10,8 @@ import '../css/app.css';
 
 // Importar iconos font awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faChildren, faTrash, faEdit, faSave, faClose, faCheck, faUsers } from '@fortawesome/free-solid-svg-icons';
-library.add(faPlus, faChildren, faTrash, faEdit, faSave, faClose, faCheck, faUsers);
+import { faPlus, faChildren, faTrash, faEdit, faSave, faClose, faCheck, faUsers, faSync, faCog } from '@fortawesome/free-solid-svg-icons';
+library.add(faPlus, faChildren, faTrash, faEdit, faSave, faClose, faCheck, faUsers, faSync, faCog);
 
 
 const pinia = createPinia(); // Manejar estados globales en vue

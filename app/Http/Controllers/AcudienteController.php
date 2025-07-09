@@ -19,13 +19,22 @@ class AcudienteController extends Controller
         $acudiente->nombre = $request->nombre;
         $acudiente->genero = $request->genero;
         $acudiente->save();
-        return response()->json(['update_acudiente' => 'El acudiente se ha actualizado correctamente']);
+        return response()->json(['update_acudiente' => true]);
     }
 
     // Funcion para eliminar el acudiente
     public function deleteAcudiente(Request $request){
         $acudiente = Acudiente::find($request->id);
         $acudiente->delete();
-        return response()->json(['delete_acudiente' => 'El acudiente se ha eliminado correctamente']);
+        return response()->json(['delete_acudiente' => true]);
+    }
+
+    // Registrar a un acudiente
+    public function createAcudiente(Request $request){
+        $acudiente = new Acudiente();
+        $acudiente->nombre = $request->nombre;
+        $acudiente->genero = $request->genero;
+        $acudiente->save();
+        return response()->json(['create_acudiente' => true]);
     }
 }

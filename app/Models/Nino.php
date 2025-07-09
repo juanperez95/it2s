@@ -15,14 +15,14 @@ class Nino extends Model
         'genero',
         'acudiente_id',
     ];
-
+    // Esconder datos de fechas
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
 
 
-    // El nño pertenece a un acudiente
+    // El niño pertenece a un acudiente
     public function acudiente(){
         return $this->belongsTo(Acudiente::class, 'acudiente_id');
     }

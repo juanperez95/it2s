@@ -20,15 +20,28 @@ class NinoController extends Controller
         $nino->salon = $request->salon;
         $nino->edad = $request->edad;
         $nino->genero = $request->genero;
+        $nino->acudiente_id = $request->acudiente_id; // Id del acudiente
         $nino->save();
-        return response()->json(['update_nino' => 'El niño se ha actualizado correctamente']);
+        return response()->json(['update_nino' => true]);
     }
 
     // Eliminar un niño
     public function deleteNino(Request $request){
         $nino = Nino::find($request->id);
         $nino->delete();
-        return response()->json(['delete_nino' => 'El niño se ha eliminado correctamente']);
+        return response()->json(['delete_nino' => true]);
+    }
+
+    // Crear a un niño
+    public function createNino(Request $request){
+        $nino = new Nino();
+        $nino->nombre = $request->nombre;
+        $nino->salon = $request->salon;
+        $nino->edad = $request->edad;
+        $nino->genero = $request->genero;
+        $nino->acudiente_id = $request->acudiente_id; // Id del acudiente
+        $nino->save(); // Guardar a niño en base de datos
+        return response()->json(['create_nino' => true]);
     }
 
     
