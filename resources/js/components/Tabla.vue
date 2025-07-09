@@ -41,8 +41,9 @@
                             </select>
                         </td>
                         <td class="p-1 text-center ml-2 border-b-1 border-blue-400 flex gap-2">
-                            <Boton :texto_btn="!activar_edicion ? 'Guardar' : 'Editar'" tipo_btn="button" color_btn="blue" @funcion_btn="activar_edicion ? activar_edicion = false : guardar_datos()"/>
-                            <Boton :texto_btn="!activar_edicion ? 'Cancelar' : 'Eliminar'" tipo_btn="button" color_btn="green" @funcion_btn="!activar_edicion ? activar_edicion = true : eliminar_registro()"/>
+                            <!--- Cambiar iconos y textos en base a como edita los datos de la tabla en los botones de accion-->
+                            <Boton :texto_btn="!activar_edicion ? 'Guardar' : 'Editar'" tipo_btn="button" :icono="['fas','edit']" @funcion_btn="activar_edicion ? activar_edicion = false : guardar_datos()"/>
+                            <Boton :texto_btn="!activar_edicion ? 'Cancelar' : 'Eliminar'" tipo_btn="button" :icono="['fas','trash']" @funcion_btn="!activar_edicion ? activar_edicion = true : eliminar_registro()"/>
                         </td>
                     </tr>
                 </tbody>
@@ -55,11 +56,20 @@
 <script setup>
 import Boton from './Boton.vue';
 import { useStoreTabla } from '../store/storeTabla.js'; // Importar store de la tabla
-import { ref } from 'vue'; 
+import { ref, reactive } from 'vue'; 
 
 const store_tabla = useStoreTabla(); // Manejar el store de la tabla
 
 const activar_edicion = ref(true); // Activar los inputs de la tabla cuando editen la informacion
+
+// Datos para enviar a la base de datos
+const datos_tabla = reactive({
+    nombre: null,
+    salon: null,
+    acudiente: null,
+    edad: null,
+    genero: null
+});
 
 // Funcion para guardar la edicion
 const guardar_datos = () => {
@@ -70,6 +80,7 @@ const guardar_datos = () => {
 const eliminar_registro = () => {
     console.log("Eliminando registro");
 }
+
 
 </script>
 

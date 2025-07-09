@@ -8,6 +8,11 @@ import { router } from './routers';
 // Importar css de uso general
 import '../css/app.css';
 
+// Importar iconos font awesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPlus, faChildren, faTrash, faEdit, faSave, faClose, faCheck, faUsers } from '@fortawesome/free-solid-svg-icons';
+library.add(faPlus, faChildren, faTrash, faEdit, faSave, faClose, faCheck, faUsers);
+
 
 const pinia = createPinia(); // Manejar estados globales en vue
 

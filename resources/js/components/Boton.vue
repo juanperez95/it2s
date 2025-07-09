@@ -1,19 +1,23 @@
 <template>
     <div>
-        <button :class="['bg-'+color_btn+'-500 p-3 text-white rounded-md efecto_btn']" :type="tipo_btn" @click="$emit('funcion_btn')">{{ texto_btn }}</button>
+        <button :class="['bg-blue-700 p-3 text-white rounded-md efecto_btn']" :type="tipo_btn" @click="$emit('funcion_btn')"><span v-if="icono">
+            <FontAwesomeIcon :icon="icono" class="text-white"/>
+        </span> {{ texto_btn }}</button>
     </div>
 </template>
 
 <script setup>
 
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+
 // Definir las propiedades del componente
-const props = defineProps({
+defineProps({
     texto_btn: {
         type: String,
         required: true,
     },
     tipo_btn:String,
-    color_btn:String
+    icono:Array
 })
 
 // Eventos o funciones del boton

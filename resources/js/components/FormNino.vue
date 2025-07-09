@@ -26,7 +26,7 @@
                 </article>
                 <!-- Botones para enviar datos al backend -->
                 <article class="flex justify-end mt-5">
-                    <Boton texto_btn="Registrar Niño" tipo_btn="submit" color_btn="blue" @funcion_btn="console.log(datos_nino)"/>                    
+                    <Boton texto_btn="Registrar Niño" tipo_btn="submit" :icono="['fas','save']" @funcion_btn="console.log(datos_nino)"/>                    
                 </article>
 
             </form>
