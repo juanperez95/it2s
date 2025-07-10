@@ -18,5 +18,5 @@ export default defineConfig({
         // Configurar el plugin de vue
         vue(),
     ],
-    base: '/build/', // Cambia la base a /app/
+    base: '/build/',
 });
